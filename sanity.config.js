@@ -7,12 +7,17 @@ export default defineConfig({
   name: 'default',
   title: 'Ai Blog',
 
-  projectId: 'bmmdiwgp',
-  dataset: 'production',
+  projectId: process.env.SANITY_STUDIO_API_PROJECT_ID || 'bmmdiwgp',
+  dataset: process.env.SANITY_STUDIO_API_DATASET || 'production',
 
   plugins: [structureTool(), visionTool()],
 
   schema: {
     types: schemaTypes,
+  },
+
+  auth: {
+    redirectOnSingle: false,
+    mode: 'replace',
   },
 })
